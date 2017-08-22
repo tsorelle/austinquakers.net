@@ -1,0 +1,41 @@
+<div id="errorMessages">
+    <div id="errorText">&nbsp;</div>
+</div>
+<div id="infoMessages">
+    <div id="infoText">&nbsp;</div>
+</div>
+<div id="tops-invitation-view">
+    <div id="edit-form">
+
+        <div id="event">
+            <h2 ><span data-bind="text:event.title"></span></h2>
+            <p><strong>
+                <span data-bind="text:event.when"></span>
+                <span data-bind="visible:event.repeatInfo"><br></span>
+                <span data-bind="visible:event.repeatInfo,text:event.repeatInfo"></span>
+                </strong>
+            </p>
+
+            <p data-bind="text:event.description"></p>
+        </div>
+
+        <div id='event-links' class="section-block">
+            <a data-bind="attr: { href:viewLink }" style="margin-right: 10px">More information ...</a>
+            <a data-bind="attr: { href:editLink },visible:canEdit">Edit</a>
+            <a style="margin-left: 8px" data-bind="attr: { href:inviteLink },visible:canSendMail">Send invitations</a>
+        </div>
+
+        <div data-bind="visible:event.isCurrent">
+            <div id="button-div" class="section-block" >
+                <button data-bind="click:signup" id="SignupButton"><span data-bind="text:buttonLabel"></span></button>
+            </div>
+
+            <div id="personsList" data-bind="visible:persons().length > 0" class="section-block" >
+                <h3>Who's coming</h3>
+                <div data-bind="foreach:persons">
+                    <a style="margin-right: 6px" data-bind="attr: { href: directoryLink }"><span data-bind="text:name"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

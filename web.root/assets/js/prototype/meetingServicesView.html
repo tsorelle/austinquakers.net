@@ -1,0 +1,51 @@
+<div id="errorMessages">
+    <div id="errorText">&nbsp;</div>
+</div>
+
+<div id="infoMessages">
+    <div id="infoText">&nbsp;</div>
+</div>
+
+<div id="meeting-services-view" class="view-content">
+    <div data-bind="visible:taskList().length == 0">
+        <p>
+            Sorry, no upcoming meeting service opportunities today.
+        </p>
+    </div>
+    <div data-bind="visible:taskList().length">
+        <div class="pager-links" data-bind="visible:showPager">
+            <p>
+            <span data-bind="visible:showPrevious"  style="padding-right: 50px">&laquo; <a href="#" data-bind="click:previousPage">Previous page</a></span>
+            <span data-bind="visible:showNext"><a href="#" data-bind="click:nextPage,visible:showNext">Next page</a> &raquo;</span>
+            </p>
+        </div>
+
+        <div class="item-list" data-bind="foreach:taskList">
+            <ul>
+                <li>
+                    <div class="views-field views-field-title listitem-header">
+                        <span class="field-content">
+                            <a data-bind="attr: { href:signupLink }" ><span style="font-weight: bold" data-bind="text:title"></span></a>
+                        </span>
+                    </div>
+                    <div class="views-field views-field-field-time-value">
+                        <span class="field-content"><span class="date-display-single" data-bind="text:when"></span></span>
+                    </div>
+                    <div class="views-field views-field-teaser" data-bind="visible:description">
+                        <div class="field-content"><p>
+                            <span data-bind="text:description"></span>
+                            <a style="margin-right: 10px;" data-bind="attr: { href:signupLink }">Sign up.</a>
+                        </p></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="pager-links" data-bind="visible:showPager">
+            <p>
+                <span data-bind="visible:showPrevious"  style="padding-right: 50px">&laquo; <a href="#" data-bind="click:previousPage">Previous page</a></span>
+                <span data-bind="visible:showNext"><a href="#" data-bind="click:nextPage,visible:showNext">Next page</a> &raquo;</span>
+            </p>
+        </div>
+    </div>
+</div>

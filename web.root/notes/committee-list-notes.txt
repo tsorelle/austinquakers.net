@@ -1,0 +1,24 @@
+Main page - (list active/inactive)
+http://www.austinquakers.org/friends/committee.php?nextAction=menu
+New committee button
+
+Committee list page:
+http://www.austinquakers.org/friends/committee.php?cid=42&nextAction=showcmte (from link on main)
+
+Display: Description, Current members, nominations, past members
+
+Add new member button
+
+Update Committee page:
+http://www.austinquakers.org/friends/committee.php?cid=42&nextAction=editcmte (from link on committee list page)
+Post, remove, cancel buttons
+
+Add new member page:
+From committee page, button > person search
+http://www.austinquakers.org/friends/committee.php?nextAction=newmember:42&pid=173
+Post, remove, cancel buttons
+
+Update member page:
+From committee page linked member
+http://www.austinquakers.org/friends/committee.php?cid=42&cmid=545&nextAction=editmember
+

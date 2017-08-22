@@ -1,0 +1,6 @@
+/** Print style sheet **/
+.doNotPrint { display: none !important; } 
+.contentWithSideMenu {
+ 		margin-left: 0;
+ 		border-left: none;
+ }

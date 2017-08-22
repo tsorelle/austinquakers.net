@@ -1,0 +1,38 @@
+<div id="errorMessages">
+    <div id="errorText">&nbsp;</div>
+</div>
+
+<div id="infoMessages">
+    <div id="infoText">&nbsp;</div>
+</div>
+
+<div id="TasksView">
+    <div data-bind="visible: waiting" id="waiter">
+        <h3>Loading, please wait ...</h3>
+    </div>
+
+    <div data-bind="visible: ready" id="edit-form">
+        <h3>Month of &nbsp;</h3>
+
+        <div><button data-bind="click:getPreviousMonth" id="PreviousButton">&lt;&lt; Previous</button>&nbsp;&nbsp;<button data-bind="click:getNextMonth" id="NextButton">Next &gt;&gt;</button>&nbsp;&nbsp;&nbsp;<button data-bind="click:saveTasks" id="SaveButton">Save</button></div>
+
+        <div id="TasksTable">
+            <table>
+                <thead>
+                <tr>
+                    <th>Week</th>
+                    <th>Greeter</th>
+                    <th>Closer</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:tasks">
+                <tr>
+                    <td data-bind="text:taskDate">&nbsp;</td>
+                    <td><input data-bind="value:greeter" /></td>
+                    <td><input data-bind="value:closer" /></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

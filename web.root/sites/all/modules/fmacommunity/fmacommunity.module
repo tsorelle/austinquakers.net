@@ -1,0 +1,183 @@
+<?php
+// $Id$
+/**
+* Supports fma features
+* @file
+**/
+
+/**
+ * Implements hook_menu().
+ */
+function fmacommunity_menu()
+{
+    $items = array();
+
+    $items['fma/download'] = array(
+        'page callback' => 'fma_handle_download',
+        'access arguments' => array('download directory'), // 'access content'),
+        'type' => MENU_CALLBACK,
+    );
+
+    return $items;
+}
+
+function fma_handle_download($downloadType = null) {
+    $downloadManager = new TFmaDownloadManager();
+    $lines = array();
+    switch($downloadType) {
+        case 'newsletter' :
+            $lines = $downloadManager->getNewsletterList();
+            break;
+    }
+    ob_start();
+    header("Content-type: application/excel");header("Content-Disposition: attachment; filename=fma-$downloadType-list.csv");
+    foreach ($lines as $line) {
+        print $line;
+    }
+}
+
+
+
+/**
+* Implementation of hook_help()
+* Return text for admin page help
+***/
+function fmacommunity_help($path='', $arg='') {
+    if ($path == 'admin/help#fma') {
+        return '<p>Supports role based security and other features for fma community site.</p>';
+    }
+    return '';
+}
+
+function fmacommunity_cron() {
+    TFriendlyNotesManager::ArchiveFriendlyNotes();
+}
+
+/**
+*  Implements hook_perm()
+*  Define permissions
+**/
+function fmacommunity_perm() {
+    return array(
+        'update fma directory',
+        'send fma mail',
+        'view fma directory notes',
+        'update fma committee directory',
+        'download directory'
+    );
+}
+
+function fmacommunity_access($op, $node) {
+    TTracer::Trace(' fmacommunity_access');
+
+}
+
+function fmacommunity_view($node, $teaser = FALSE, $page = FALSE) {
+    TTracer::Trace(' fmacommunity_view');
+}
+
+
+
+function fmacommunity_preprocess_node(&$variables) {
+      $node = $variables['node'];
+      TTracer::Trace('fmacommunity_preprocess node type: '. $node->type);
+      if ($node->type == 'committee_post' )
+       {
+           if ($node->field_committee_homepage[0]['value'])
+                $variables['committee'] =
+                    TCommitteeBlock::GetCommitteeDescription();
+           else
+
+                    TCommitteeBlock::SetCommitteeHomePageLink();
+
+      }
+
+      else if ($node->type == 'event') {
+//          krumo($variables);
+//          krumo($variables['taxonomy']);
+           $body = $node->body;
+
+           $newContent = str_replace('Public:&nbsp;','',$body);
+           $newContent = str_replace('Outside Group:&nbsp;','',$newContent);
+           $taxonomyDisplay = TContentFormatter::FormatTaxonomy($variables['taxonomy']);
+           $newContent .= $taxonomyDisplay;
+           $variables['content'] = $newContent;
+      }
+
+/*
+      if ($node->type == 'document_upload') {
+//          dsm($node);
+//          TTracer::ShowArray($node->content['field_document_file']);
+//          TTracer::ShowArray($node->content['field_document_file']);
+//             dsm($node->content['field_document_file']);
+      }
+      TTracer::Trace("FMA: node = ".$node->type);
+*/
+}
+
+
+/**
+/* Update fma persons table for fma community
+function fmacommunity_user($op, &$edit, &$user, $category = null) {
+TTracer::Trace('fmacommunity_user: '.$op);
+    if ($op== 'after_update')
+   //     TFmaAccountManager::SynchronizeFma($user);
+    TTracer::ShowArray($user);
+
+}
+
+*/
+
+
+
+/*
+function fma_access($op, $node, $account) {
+}
+
+function fma_nodeapi(&$node, $op, $teaser, $page) {
+}
+*/
+
+
+function _isTokenTransformType($typeName) {
+    switch ($typeName) {
+        case  'event' : return true;
+        case  'page' : return true;
+        case  'committee_post' : return true;
+        case  'group_post' : return true;
+        case  'story' : return true;
+        case  'webform' : return true;
+        case  'blog' : return true;
+        case  'book' : return true;
+        case  'fds_class' : return true;
+    }
+    return false;
+}
+
+/**
+* Implements hook_nodeapi to delete revision
+**/
+function fmacommunity_nodeapi(&$node, $op, $teaser, $page) {
+    switch ($op) {
+        case 'validate' :
+            TTracer::Trace('fma_nodeapi'." op = $op") ;
+            if (_isTokenTransformType($node->type)) {
+                // only to show error messages.
+                TContentTokenProcessor::ReplaceTokens('directory',$node->body);
+            }
+            break;
+
+        case 'presave' :
+            TTracer::Trace('fma_nodeapi'." op = $op") ;
+            if (_isTokenTransformType($node->type)) {
+                // save transform to database.
+                $transform = TContentTokenProcessor::ReplaceTokens('directory',$node->body);
+                if ($transform) {
+                    $node->body = $transform;
+                    $node->teaser = TContentFormatter::GetTeaser($transform);
+                }
+            }
+            break;
+    }
+}
+

@@ -1,0 +1,5 @@
+<?php
+define('CONTENTTYPE_TEXT',1);
+define('CONTENTTYPE_HTML',2);
+define('CONTENTTYPE_MULTIPART',3);
+

@@ -1,0 +1,5 @@
+; $Id$
+name = "TOPS Extension"
+description = "A content type that integrates a TOPS application into Drupal."
+core = 6.x
+php = 5.1

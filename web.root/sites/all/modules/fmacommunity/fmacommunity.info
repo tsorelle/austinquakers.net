@@ -1,0 +1,5 @@
+; $Id$
+name = "fmacommunity"
+description = "Supports security managment and other features for FMA."
+core = 6.x
+php = 5.1

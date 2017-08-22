@@ -1,0 +1,35 @@
+<div id="errorMessages">
+    <div id="errorText">&nbsp;</div>
+</div>
+<div id="infoMessages">
+    <div id="infoText">&nbsp;</div>
+</div>
+<div id="tops-invite-view">
+        <div id="event">
+            <h2 ><span data-bind="text:event.title"></span></h2>
+                <p><strong>
+                    <span data-bind="text:event.when"></span>
+                    <span data-bind="visible:event.repeatInfo"><br></span>
+                    <span data-bind="visible:event.repeatInfo,text:event.repeatInfo"></span>
+                </strong>
+            </p>
+        </div>
+    <form data-bind="visible:formVisible">
+        <div class="formField field-horizontal">
+            <label for="listSelect">Mailing List</label>
+            <select id="listSelect" style="margin-right: 30px" data-bind="options: mailingLists,
+                   optionsText: 'text',
+                   value: selectedList"></select>
+            <input type="checkbox" data-bind="checked:sendTestMessage" /> Send test message
+        </div>
+        <fieldset  id="eventSendPanel"  class="clearBoth noTop" data-bind="visible:canEdit">
+            <legend>Add additional comments to the message</legend>
+            <textarea class="fillContainer" id="messageText" name="messageText"  rows="12"  data-bind="value:comments" ></textarea>
+        </fieldset>
+        <div class="buttonPanel" id="buttons">
+            <div id="button-div" class="section-block" >
+                <button data-bind="click:sendMessage" id="SendButton">Send</button>
+            </div>
+        </div>
+    </form>
+</div>

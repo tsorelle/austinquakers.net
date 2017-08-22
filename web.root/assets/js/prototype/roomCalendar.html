@@ -1,0 +1,29 @@
+<div id="errorMessages">
+    <div id="errorText">&nbsp;</div>
+</div>
+
+<div id="infoMessages">
+    <div id="infoText">&nbsp;</div>
+</div>
+
+<div id="room-calendar-view" style="display:none">
+    <div class="formField field-horizontal">
+        <select id="listSelect" style="margin-right: 30px"
+                data-bind="options:roomLookup,optionsText: 'text',value:selectedRoom,optionsCaption: 'Select a room or resource...'"
+                ></select>
+    </div>
+
+    <div id="event-list">
+        <div data-bind="foreach:eventList">
+            <p>
+                <span style="font-weight: bold" data-bind="text:when"></span><br/>
+                <span style="font-weight: bold;color:red;background-color: yellow" data-bind="visible:conflict">
+                    Warning: schedule conflict with previous event!
+                </span>
+                <br data-bind="visible:conflict" />
+                <a data-bind="attr: { href:eventLink }" ><span style="font-weight: bold" data-bind="text:title"></span></a>
+            </p>
+        </div>
+    </div>
+
+</div>

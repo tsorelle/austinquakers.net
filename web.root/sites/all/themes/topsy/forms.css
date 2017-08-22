@@ -1,0 +1,291 @@
+/*
+div {
+    border: 1px solid red;
+}
+*/
+form.tops div.formField label {
+    float: left;
+    width: 120px;
+    text-align: right;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-right: 5px;
+}
+
+
+form.tops div.formField .labeledText {
+    padding-top: 3px;
+    margin-left: 125px;
+}
+
+
+form.tops p.formText {
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+form.tops fieldset.leftLabels label {
+    text-align: left;
+    width: 20%;
+}
+
+
+form.tops legend {
+    font-weight: bold;
+    font-style: italic;
+    background-color: white;
+    padding: 2px;
+
+}
+
+
+form.tops fieldset {
+    border: 1px dotted;
+    padding: 5px;
+    padding-bottom: 10px;
+}
+
+input.wide,
+textarea.wide {
+    width: 350px;
+}
+
+input.extraWide,
+textarea.extraWide {
+    /*width: 500px;*/
+    width: 450px;
+}
+
+fieldset.memo textarea {
+    clear: left;
+    width: 100%;
+}
+
+form.tops label {
+  clear: left;
+}
+
+form.tops label.narrow {
+  width: 25%
+}
+
+form.tops label.quarter {
+    width: 25% !important;
+}
+
+
+form.tops label.short {
+  width: 15%
+}
+
+
+form.tops label.mediumWidth {
+  width: 38% !important;
+}
+
+
+div.buttonPanel {
+    padding-right: 30px;
+/*    padding-left: 30%; */
+    margin-top: 10px;
+}
+
+div.buttonPanel input {
+/*    float: right; */
+    margin: 10px;
+
+}
+.clearBoth {
+   clear: both;
+}
+
+.noTop {
+    margin-top: 0;
+}
+
+.noBottom {
+    margin-bottom: 0;
+}
+
+
+div.columns2 div.left,
+div.columns2 div.right {
+    width: 49%;
+}
+
+div.columns2 div.right {
+    float: right;
+}
+
+
+div.columns2 div.left {
+    float: left;
+}
+
+div.columns3 div.left {
+    float: left;
+    width: 60%;
+}
+div.columns3 div.left .col1 {
+    float: left;
+    width: 50%;
+}
+div.columns3 div.left .col2 {
+    margin-left: 55%;
+}
+div.columns3 div.right {
+    margin-left: 66%
+}
+
+fieldset.stackedButtons {
+    padding: 10px;
+}
+
+fieldset.stackedButtons input {
+    margin-bottom: 5px;
+    text-align: left;
+    width: 100px;
+    display: block;
+    padding-left: 10px;
+}
+
+fieldset.wideButtons input {
+    width: 400px;
+}
+
+
+div.inlineButtons {
+    padding-left: 8px;
+}
+
+
+div.inlineButtons input {
+    margin-bottom: 5px;
+    text-align: center;
+    width: 189px;
+    display: inline;
+    padding-left: 10px;
+}
+
+
+fieldset#appContactButtons input {
+    width: 300px;
+}
+
+fieldset#appMembershipButtons input {
+    width: 200px;
+}
+
+fieldset.radioList div {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 0;
+/*    border: 1px solid red; */
+}
+
+
+fieldset.radioList input {
+    display: block;
+    float: left;
+    width: 10px;
+    margin-left: 10px;
+    margin-top: 0px;
+}
+
+fieldset.radioList p {
+    /* border: 1px solid green; */
+    padding: 0;
+    margin-top: 2px;
+    margin-left: 24px;
+    padding-bottom: 3px;
+    margin-bottom: 2px;
+
+}
+
+
+ol {
+    margin-bottom: 0px;
+    margin-top: 3 px;
+}
+
+
+ol li {
+    margin-bottom: 3px;
+}
+
+.pageNode h2, h3 {
+    margin-bottom: 5px;
+    margin-top: 3px;
+}
+
+
+fieldSet.displayPanel {
+}
+
+
+fieldSet.displayPanel ul,
+fieldSet.displayPanel p
+ {
+    margin-top: 0;
+    margin-bottom: 2px;
+
+}
+
+fieldSet.displayPanel div.buttonPanel {
+    border: 1px dotted gray;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+fieldSet.displayPanel div.buttonPanel input {
+    margin: 0px;
+    margin-left: 0px;
+
+/*    margin-bottom: 0px;*/
+}
+
+.formField {
+    clear: both;
+    padding-top: 3px;
+
+}
+
+.formField input,
+.formField textarea,
+.formField select {
+    margin-top: 3px;
+}
+
+.formField .checkBox {
+    margin-top: 5px;
+}
+
+
+div.recordStamp {
+    margin-top: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    color: brown;
+}
+
+div.checkBoxDiv {
+    margin-top: 3px;
+    padding-top: 1px;
+}
+
+
+div.checkBoxDiv input {
+    float : left;
+    margin-top: 2px;
+    margin-right: 3px;
+
+}
+

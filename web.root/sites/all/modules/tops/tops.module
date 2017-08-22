@@ -1,0 +1,407 @@
+<?php
+// $Id$
+/**
+* Supports TOPS integration with Drupal
+* @file
+**/
+
+/**
+* Implementation of hook_help()
+* Return text for admin page help
+**/
+
+function tops_help($path, $arg) {
+    if ($path == 'admin/help#tops') {
+        return '<p>Invokes a TOPS application for the corresponding application Id.</p>';
+    }
+
+}
+
+/**
+* Implements hook_node_info
+* Return basic node information
+**/
+function tops_node_info() {
+    return array (
+        'tops' => array (
+            'name' => 'Tops',
+            'module' => 'tops',
+            'app_description' => 'TOPS Application',
+            'has_title' => TRUE,
+            'title_label' => 'Title',
+            'has_body' => FALSE,
+            'body_label' => ''
+        ) // tops def
+    ); // end info def
+}
+
+/**
+ * Implementation of hook_form().
+ * Define form for create content
+ */
+function tops_form(&$node) {
+    $type = node_get_types('type',$node);
+    if ($type->has_title) {
+        $form['title'] = array(
+            '#type' => 'textfield',
+            '#title' => check_plain($type->title_label),
+            '#required' => TRUE,
+            '#default_value' => $node->title,
+            '#weight' => -5
+        ); // title field
+    }
+
+    $form['appId'] = array(
+        '#type' => 'textfield',
+        '#size' => 40,
+        '#maxlength' => 60,
+        '#title' => 'Application ID',
+        '#description' => 'Unique identifier for application.',
+        '#default_value' => isset($node->appId) ? $node->appId : ''
+    ); // field appId
+
+    $form['cmd'] = array(
+        '#type' => 'textfield',
+        '#size' => 30,
+        '#maxlength' => 30,
+        '#title' => 'Default command code',
+        '#description' => 'Default command identifier',
+        '#default_value' => isset($node->cmd) ? $node->cmd : ''
+    ); // field
+
+    $form['app_description'] = array(
+        '#type' => 'textfield',
+        '#size' => 50,
+        '#maxlength' => 127,
+        '#title' => 'Description',
+        '#description' => 'Description of application ',
+        '#default_value' => isset($node->app_description) ? $node->app_description : ''
+    ); // field
+
+    return $form;
+}
+
+/**
+*  Implements hook_perm()
+*  Define permissions
+**/
+function tops_perm() {
+    return array(
+        'create TOPS node',
+        'edit TOPS node',
+        'delete TOPS node'
+    );
+}
+
+/**
+* Implements hook_access()
+*  Check permissions for user
+**/
+function tops_access($op, $node, $account) {
+    switch ($op) {
+        case 'create' :
+            return user_access('create TOPS node',$account);
+        case 'update' :
+            return user_access('edit TOPS node',$account);
+        case 'delete' :
+            return user_access('delete TOPS node', $account);
+    }
+}
+
+/**
+* Implements hook_insert()
+* Add node to database
+**/
+function tops_insert($node) {
+    if (!isset($node->appId))
+      $node->appId  = '';
+    if (!isset($node->cmd))
+      $node->cmd  = '';
+    if (!isset($node->app_description))
+       $node->app_description = '';
+
+     db_query('INSERT INTO {tops} (vid, nid, appId, cmd, app_description) '
+         ."VALUES (%d, %d, '%s', '%s', '%s')",
+            $node->vid,
+            $node->nid,
+            $node->appId,
+            $node->cmd,
+            $node->app_description);
+}
+
+/**
+* Implements hook_update()
+*  Update node in database
+**/
+function tops_update($node) {
+    if ($node->revision) {
+        tops_insert($node);
+    }
+    else {
+        db_query( "UPDATE {tops} ".
+            "SET appId = '%s', cmd = '%s', app_description = '%s' ".
+            "WHERE vid = %d",
+            $node->appId,
+            $node->cmd,
+            $node->app_description,
+            $node->vid);
+    }
+}
+/**
+* Implements hook_delete()
+* drop all versions of a node
+**/
+function tops_delete($node) {
+    db_query(
+        'DELETE FROM {tops} WHERE nid = %d',
+        $node->nid);
+}
+
+
+/**
+* Implements hook_load()
+* Fetch a node from the database
+**/
+function tops_load($node) {
+    $result = db_query(
+        'SELECT appId, cmd, app_description FROM {tops} WHERE vid = %d',
+        $node->vid);
+    return db_fetch_object($result);
+}
+
+/**
+* Implements hook_view()
+**/
+function tops_view($node, $teaser = FALSE, $page = FALSE) {
+//    TTracer::On();
+    TTracer::Trace('Starting application in tops.module.tops_view()');
+//echo '<p>tops_view</p><pre>';
+      $node = node_prepare($node, $teaser);
+// print_r($node); print '</pre>';
+      $appId = $node->appId;
+      $cmd =  $node->cmd;
+TTracer::Trace("appid = $node->appId; cmd=$cmd")      ;
+//return $node;
+
+    // cron doesn't need to run TOPS applications.
+    // disable for efficiency and safety
+    if ($_SERVER["SCRIPT_NAME"] == "/index.php") {
+      $app = TApplicationFactory::Create($appId);
+      $pageController = $app->execute($cmd);
+
+      $node->content['tops_application'] = array (
+          '#value' => theme('tops_application',$pageController),
+          '#weight' => 1
+          );
+      }
+      return $node;
+}
+
+/**
+* Implements hook_theme()
+*/
+function tops_theme() {
+    return array(
+        'tops_application' => array(
+            'template' => 'tops_application',
+            'arguments' => array (
+                'pageController' => NULL
+            ) // arguments
+        ) // tops_application
+    ); // result
+}
+
+/**
+*  Implement hook_init()
+*  Perform TOPS bootstrap tasks
+*/
+function tops_init() {
+    // echo "<div>Tops Initialzing</div>";
+    // get tops startup parameters
+    $configFile = realpath('tops/tops.ini');
+    if (empty($configFile)) {
+        // default library paths and tracer flag
+        $topslib = realpath('tops/tops_lib');
+        $sitelib = realpath('tops/site_lib');
+        $traceEnabled = false;
+        $includesPath = false;
+        $memoryLimit = false;
+    }
+    else {
+        // load settings
+        $startupSettings = parse_ini_file($configFile);
+
+        // Get path for tops libraries
+        $topslib = realpath(
+            isset($startupSettings['topslib']) ? $startupSettings['topslib'] : 'tops/tops_lib');
+        $sitelib = realpath(
+            isset($startupSettings['sitelib']) ? $startupSettings['sitelib'] : 'tops/site_lib');
+
+        // get tracer switch
+        $traceEnabled = (!empty($startupSettings['trace']));
+
+        // get additional include directories.
+        $includesPath = isset($startupSettings['includes']) ? $startupSettings['includes'] : false;
+
+        $memoryLimit = isset($startupSettings['memory']) ? $startupSettings['memory'] : false;
+    }
+
+    if (!empty($includesPath))    {
+        ini_set('include_path', ini_get('include_path').$includesPath);
+    }
+
+    //     ini_set('memory_limit', '128M');
+    if (!empty($memoryLimit))    {
+        ini_set('memory_limit', $memoryLimit);
+    }
+
+    // Store library paths and update PHP includes path
+    require_once("$topslib/sys/TClassLib.php");
+    TClassLib::Create($topslib, $sitelib);
+
+    // Set __autoload class search
+    require_once('tops_lib/sys/TClassPath.php');
+    TClassPath::Add($topslib,'sys','db','model','view','ui','drupal/sys','services');
+    TClassPath::Add($sitelib,'model','view','sys','dto','services');
+
+    // enable tops error handling
+    require_once ('tops_lib/sys/errorHandling.php');
+
+    // start trace
+    if ($traceEnabled) {
+        TTracer::On();
+        TTracer::Trace("Started global trace");
+    }
+
+    global $user;
+    if (isset($user)) {
+        TDrupalUser::SetCurrent($user);
+    }
+    else {
+        TDrupalUser::SetCurrent();
+    }
+    drupal_add_js('misc/collapse.js');
+
+    TViewModel::Initialize();
+
+    TTracer::Trace('Startup done.');
+}
+
+/**
+* Implement hook_user
+* Initialize of update tops user object
+*/
+ function tops_user($op, &$edit, &$account, $category = null) {
+    if ($category=='account') {
+        // TTracer::Trace("tops_user($op, $account->uid)");
+        // TTracer::ShowArray($account);
+    }
+    if ($op == 'update') {
+        global $user;
+        $uid = isset($user) ? $user->uid : 0;
+        // TTracer::Assert(isset($user), "drupal user $user->uid/$uid loaded.");
+        // TTracer::Assert(TUser::IsAssigned(),"TUser assigned");
+        if ($account->uid == $uid) {
+            TDrupalUser::SetCurrent($account);
+            TTracer::Trace('Loaded in tops_user: '.TUser::GetCurrentUser()->getFullName());
+        }
+    }
+}
+
+/**
+ * Implements hook_link_alter().
+ */
+function tops_link_alter(&$links, $node)
+{
+    if (module_exists('notifications')) {
+        if ($node->type == 'article') {
+            $links['notifications_0']['title'] = t('Subscribe to this article');
+        }
+        if ($node->type == 'forum') {
+            $links['notifications_0']['title'] = t('Subscribe to this topic');
+        }
+    }
+}
+
+/**
+ * Implementation of hook_theme_registry_alter().
+ *
+ * Register a preprocess function to deal with jQuery issues.
+ * see tops_preprocess_page
+ *
+ */
+function tops_theme_registry_alter(&$theme_registry) {
+    if (isset($theme_registry['page'])) {
+        // If tops preprocess function is there already, remove it.
+        if ($key = array_search('tops_preprocess_page', $theme_registry['page']['preprocess functions'])) {
+            unset($theme_registry['page']['preprocess functions'][$key]);
+        }
+        // Now tack it on at the end so it runs after everything else.
+        $theme_registry['page']['preprocess functions'][] = 'tops_preprocess_page';
+    }
+}
+
+/**
+ * Implementation of moduleName_preprocess_hook().
+ *
+ * Replace Drupal core's misc/jquery.js (ver 1.2.6) with the 1.8.3 version required by TOPS ViewModels
+ * jQuery Version 1.8.3 breaks some Drupal 6 functionality so we must revert to the older version for other pages.
+ *
+ */
+function tops_preprocess_page(&$variables) {
+    if ((!empty($variables['scripts']) && TViewModel::getVmPath())) {
+        $scripts = drupal_add_js();
+        if (isset($scripts['core']['misc/jquery.js'])) {
+            $replace = 'assets/js/jquery-1.8.3.min.js';
+            $settings = $scripts['core']['misc/jquery.js'];
+            unset($scripts['core']['misc/jquery.js']);
+
+            // insert jquery at top of core scripts. Drupal.js depends on jQuery
+            $insert = array();
+            $insert[$replace] = $settings;
+            $scripts['core'] = array_merge($insert,$scripts['core']);
+
+            $variables['scripts'] = drupal_get_js('header', $scripts);
+        }
+    }
+}
+
+function tops_getFieldValue($node,$fieldName) {
+    if (!empty($node->content)) {
+        if (array_key_exists($fieldName,$node->content)) {
+            $fieldObject = $node->content[$fieldName];
+            $item = $fieldObject['field']['items'][0];
+            if (array_key_exists('#item',$item) && array_key_exists('value',$item['#item'])) {
+                return $item['#item']['value'];
+            }
+        }
+    }
+    return null;
+}
+
+
+/**
+ * Implements hook_link().
+ */
+function tops_link($type, $node = NULL, $teaser = FALSE) {
+    $links = array();
+
+    if ($type=='node' && $node->type == 'event') { // && $teaser) {
+        if (!empty($node->content)) {
+            $value =  tops_getFieldValue($node,'field_outside_group_event');
+            if ($value !== 'Yes') {
+                $type = tops_getFieldValue($node,'field_event_type');
+
+                $links['event-reminder'] = array(
+                    'title' =>  $type == 'calendar' ? 'Remind me' : 'Sign me up',
+                    'href' => 'signup',
+                    'query' => "eid=$node->nid",
+                    // 'fragment' => 'anchorname',
+                    'attributes' => array('title' => 'Schedule an e-mail reminder for this event.'),
+                );
+            }
+        }
+    }
+
+    return $links;
+}

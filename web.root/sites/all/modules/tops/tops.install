@@ -1,0 +1,68 @@
+<?php
+// $Id$
+/**
+* Install the TOPS module
+**/
+/**
+* Implementation of hook_install()
+**/
+function tops_install() {
+    drupal_install_schema('tops');
+}
+
+/**
+* Implementation of hook_uninstall()
+**/
+function tops_uninstall() {
+    drupal_uninstall_schema('tops');
+}
+
+/**
+* Implementation of hook_schema
+**/
+function tops_schema() {
+    $schema['tops'] = array(
+        'fields' => array(
+            'vid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'default' => 0
+            ), // vid
+            'nid' => array(
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'default' => 0
+            ), // nid
+            'appId' => array (
+                'type' => 'varchar',
+                'length' => 60,
+                'not null' => TRUE,
+                'default' => ''
+            ), // appId
+            'cmd' => array(
+                'type' => 'varchar',
+                'length' => 30,
+                'not null' => FALSE,
+                'default' => ''
+            ), //
+            'app_description' => array(
+                'type' => 'varchar',
+                'length' => 127,
+                'not null' => FALSE,
+                'default' => ''
+            ) // app_description
+        ), // end fields def
+        'indexes' => array(
+            'nid' => array('nid')
+        ), // end of indexes def
+        'primary key' => array(
+            'vid'
+        ) // end if primary key def
+    ); // end schema def
+    return $schema;
+}
+
+
+?>

@@ -1,0 +1,51 @@
+<div id="errorMessages">
+    <div id="errorText">&nbsp;</div>
+</div>
+
+<div id="infoMessages">
+    <div id="infoText">&nbsp;</div>
+</div>
+
+<div id="task-calendar-view">
+    <div data-bind="visible: waiting" id="waiter">
+        <h3>Loading, please wait ...</h3>
+    </div>
+
+    <div data-bind="visible: ready" id="calendar-list">
+        <h3>Task Calendar</h3>
+
+        <p data-bind="visible:canEdit"><a href="">Create new event or task</a></p>
+
+        <div>
+            <button data-bind="click:getPrevious" id="PreviousButton">&lt;&lt; Previous</button>&nbsp;&nbsp;<button data-bind="click:getNext" id="NextButton">Next &gt;&gt;</button>
+        </div>
+
+        <div id="no-tasks" data-bind="visible:taskCount() < 1">
+            <p>No tasks scheduled after <span data-bind="text:endDate"></span></p>
+        </div>
+        <div id="TasksTable" data-bind="visible:taskCount">
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Task</th>
+                    <th>&nbsp;</th>
+                    <th data-bind="visible:canEdit">$nbsp;</th>
+                    <th data-bind="visible:canEdit">$nbsp;</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach:tasks">
+                <tr>
+                    <td data-bind="text:date">&nbsp;</td>
+                    <td><a data-bind="attr:{href: viewLink}"><span data-bind="text:title"></span></a></td>
+                    <td><a data-bind="attr:{href: signupLink}">Sign me up</a> </td>
+                    <td data-bind="visible:parent.canEdit"><a data-bind="attr:{href: editLink}">Edit</a> </td>
+                    <td data-bind="visible:parent.canEdit">
+                        <a data-bind="attr:{href: inviteLink},visible:inviteLink">Invite</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

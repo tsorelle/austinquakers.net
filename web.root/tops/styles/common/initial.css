@@ -1,0 +1,54 @@
+/* =INITIAL
+   v2.1, by Faruk Ates - www.kurafire.net
+   Addendum by Robert Nyman - www.robertnyman.com
+	Added body font-size small - Terry SoRelle - www.2quakers.net
+*/
+
+/* Neutralize styling:
+   Elements we want to clean out entirely: */
+html, body, form, fieldset {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: small; /* specify all other font sizes by percentage */
+}
+
+/* Neutralize styling:
+   Elements with a vertical margin: */
+h1, h2, h3, h4, h5, h6, p, pre,
+blockquote, ul, ol, dl, address {
+	margin: 1em 0;
+	padding: 0;
+}
+
+/* Apply left margin:
+   Only to the few elements that need it: */
+li, dd, blockquote {
+	margin-left: 1em;
+}
+
+/* Miscellaneous conveniences: */
+form label {
+	cursor: pointer;
+}
+fieldset {
+	border: none;
+}
+
+/* Form field text-scaling */
+input, select, textarea {
+	font-size: 100%;
+}
+
+/* Use this to hide text that should only be displayed in non compliant browsers. */
+.doNotDisplay {
+	display: none !important;
+}
+
+/* use to hide spam-catcher field in mail form */
+.special {
+	display: none !important;
+}
+

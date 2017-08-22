@@ -1,0 +1,16 @@
+; $Id: topsy.info,v 1.0 2008/12/31 23:27:32 goba Exp $
+name = simpleton
+description = Theme for MVVM Application
+version = 1.0
+core = 6.x
+engine = phptemplate
+  ; This section adds CSS files to your theme. The media type is specified in
+  ; the brackets. Typical CSS media types include "all", "screen", "print", and
+  ; "handheld". See http://www.w3.org/TR/CSS21/media.html#media-types for a full
+  ; list of stylesheet media types in CSS 2.1.
+  ;
+  ; You can also override any of topsy's stylesheets or any module's stylesheets,
+  ; an /extremely/ useful feature. See the excellent Drupal 6 Theme Guide at
+  ; http://drupal.org/node/171209 for more details.
+regions[right]          = Right sidebar
+regions[content]        = Content

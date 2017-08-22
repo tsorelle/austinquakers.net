@@ -1,0 +1,89 @@
+body {
+    background-color: #9FB7AD;
+    font-family: Tahoma;
+    color: #333;
+}
+
+
+ #homelink {
+	float: left;
+	color: #FFFFCC;
+	text-align: center;
+ 	width: 75px;
+   margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 5px;
+	padding-right:5px;
+	padding-top: 17px;
+	padding-bottom: 11px;
+
+ }
+
+ #homelink a,
+ #homelink a:visited,
+ #homelink a:link,
+ #homelink a:hover {
+	font-weight: bold;
+	color: #FFFFCC;
+	font-size: 12px;
+	padding: 0;
+	margin: 0;
+   margin-top: 0;
+	margin-bottom: 0;
+ }
+
+ #bannertext {
+	border-left: 1px solid black;
+   margin-top: 0;
+ 	margin-left: 90px;
+   background-color: #CCFF99 ;
+	padding-bottom: 10px;
+	padding-top: 5px;
+ }
+
+ #banner {
+	background-color: #4B8553;
+   min-height: 40px;
+   padding: 0;
+	margin: 0;
+	border-bottom: 1px solid black;
+ }
+
+ #bannertext h1 {
+	color: #008040;
+ 	margin: 0px;
+	margin-left: 5px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-style: italic;
+	font-weight: bold;
+	padding: 0;
+	padding-top: 5px;
+	font-size: 25px;
+ }
+
+	#maincontent {
+		padding: 5px;
+	}
+
+   #maincontent h1 {color: #367E70}
+	#maincontent h2 {color: #367E70}
+	#maincontent h3 {color: #367E70; margin-bottom: 5px}
+	#maincontent h4 {color: #367E70}
+   #maincontent h5 {color: #367E70}
+   #maincontent h6 {color: #367E70}
+	#maincontent ul {
+		margin-top: 3px;
+		margin-left: 15px;
+	}
+	#maincontent ul li {
+		margin-bottom: 3px;
+	}
+
+	.topheading {
+		margin-top: 0px;
+
+	}
+   p.infoMessage {color: blue; font-weight: bold}
+   p.errorMessage {font-family: Tahoma,Arial,Helvetica,Sans-Serif; color: red; font-weight: bold}
+

@@ -1,0 +1,71 @@
+///<reference path="../Tops.Peanut/Peanut.d.ts"/>
+/**
+ * Created by Terry on 2/7/2016.
+ */
+/// <reference path='../typings/jquery/jquery.d.ts' />
+/// <reference path="../typings/knockout/knockout.d.ts" />
+/// <reference path='../typings/underscore/underscore.d.ts' />
+module Tops {
+    export class selectListObservable {
+        private selectHandler : (selected: INameValuePair) => void;
+        private subscription : any;
+        private defaultValue;
+        options = ko.observableArray<INameValuePair>();
+        selected = ko.observable<INameValuePair>();
+
+        public constructor(selectHandler : (selected: INameValuePair) => void,
+                           optionsList: INameValuePair[] = [],
+                           defaultValue: any = null) {
+            var me = this;
+            me.options(optionsList);
+            me.defaultValue = defaultValue;
+            me.setValue(defaultValue);
+            me.selectHandler = selectHandler;
+            // me.subscription =  me.selected.subscribe(selectHandler);
+        }
+
+        public setOptions( optionsList: INameValuePair[] = [],
+                           defaultValue: any = null) {
+            var me = this;
+            me.options(optionsList);
+            me.setValue(defaultValue);
+        }
+
+        public setValue(value: any) {
+            var me = this;
+            var options = me.options();
+            var option = _.find(options,function(item: INameValuePair) {
+                return item.Value == value;
+            });
+            me.selected(option);
+        }
+
+        public getValue(defaultValue: any = '') {
+            var me = this;
+            var selection = me.selected();
+            return selection ? selection.Value : defaultValue;
+        }
+
+        public getName(defaultName: string = '') {
+            var me = this;
+            var selection = me.selected();
+            return selection ? selection.Name : defaultName;
+        }
+        
+        public restoreDefault() {
+            var me = this;
+            me.setValue(me.defaultValue);
+        }
+
+        public unsubscribe() {
+            var me = this;
+            if (me.subscription) {
+                me.subscription.dispose();
+            }
+        }
+        public subscribe() {
+            var me = this;
+            me.subscription = me.selected.subscribe(me.selectHandler);
+        }
+    }
+}

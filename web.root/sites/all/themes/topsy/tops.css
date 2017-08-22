@@ -1,0 +1,562 @@
+/* $Id: style.css,v 1.0 2008/09/11 09:27:26 goba Exp $ */
+/* Site specific base styles */
+
+/**
+ * TOPS, for Drupal 6.x
+ * Terry SoRelle, iStyledThis [dot] nl
+ */
+
+
+ /*
+ * Top level elements
+ */
+html {
+    /*
+    background: #ECE9D8 !important;
+    */
+}
+
+
+body {
+    /*
+    background-color: #ECE9D8;
+    padding-top: 15px;
+    padding-bottom: 18px;
+    */
+}
+
+/**
+ * Tables
+ */
+table {
+    margin-top: 10px;
+    margin-left: 3px;
+    border: 1px solid black;
+}
+th,
+th a,
+th a.visited {
+    /* background-color:#006184; */
+    color: white !important;
+    vertical-align: top;
+}
+
+/*
+td {
+    background-color: white;
+    vertical-align: top;
+}
+
+td a,
+td a:visited
+{
+   color: #002D3C;
+}
+
+ **/
+
+
+/* Use this to hide text that should only be displayed in non compliant browsers. */
+.doNotDisplay {
+	display: none !important;
+}
+
+
+/*
+ *   Content Divisions
+ */
+
+/* YUI Generated custom width for outer page frame */
+#custom-doc {
+    width:65em;*width:63.43em;min-width:845px; margin:auto; text-align:left;
+}
+
+div#trace {
+    margin-top: 0;
+    margin-bottom: 5px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    padding: 5px;
+}
+
+
+/* YUI Header div */
+#hd {
+    /*
+    border-top: solid 1px;
+    border-color: #002200;
+    border-bottom: solid 1px;
+    margin-bottom: 0px;
+    */
+}
+
+#logo-title {
+    padding-top: 3px;
+    padding-left: 3px;
+}
+
+div#logo-image {
+    float: left;
+}
+
+#name-and-slogan {
+    margin-left: 100px;
+}
+
+#site-name {
+
+}
+#site-name h1 {
+    font-size: 300%;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+#site-name a {
+    text-decoration: none;
+    color: #6699FF;
+}
+/*
+#site-name a:link {}
+#site-name a:visited {}
+#site-name a:hover {}
+#site-name a:active {}
+*/
+
+#search-box {}
+
+#site-slogan {
+
+}
+
+#header-region {
+
+}
+
+#banner-region {
+
+}
+
+#navbar { }
+
+#primary-links {}
+#primary-links a {}
+#primary-links a:link {}
+#primary-links a:visited {}
+#primary-links a:hover {}
+#primary-links a:active {}
+
+#secondary-links {}
+#secondary-links a {}
+#secondary-links a:link {}
+#secondary-links a:visited {}
+#secondary-links a:hover {}
+#secondary-links a:active {}
+
+
+/* YUI main content div */
+#bd {
+}
+
+/**
+ * Status and error block
+ **/
+.messages ul {
+  margin: 0;
+  list-style: none;
+}
+
+.messages ul li {
+  list-style: none;
+}
+
+
+div.status {
+  background-color: #DAE9EC;
+  color: #174D17;
+  border: 1px dotted green;
+  margin-right: 10px;
+  padding: 3px;
+  margin-bottom: 0;
+  margin-top: 3px;
+}
+
+div.error, tr.error {
+  color: #a30000;
+  background-color: #FFCCCC;
+  border: 1px dotted red;
+  margin-right: 10px;
+  padding: 3px;
+  margin-bottom: 0;
+  margin-top: 3px;
+}
+
+input.error {
+    color: black;
+}
+
+
+/**
+ * Bread crumbs
+ **/
+div.breadcrumb {
+    /*
+    margin-top: 3px;
+    margin-bottom: 2px !important;
+    padding: 0 !important;
+    margin-right: 10px;
+    text-align: right;
+    */
+}
+
+
+div.breadcrumb a,
+div.breadcrumb a:visited {
+/*
+    color: #920305;
+    font-weight: bold;
+    text-decoration: none !important;
+*/
+}
+div.breadcrumb a:hover {
+    /*
+    text-decoration: underline !important;
+    */
+}
+
+
+/**
+ * Content regions
+ **/
+#content-header {
+
+}
+
+#content-region {
+    /*
+    padding-right: 2em;
+    */
+
+}
+
+#content-region p {}
+#content-region h1 {}
+#content-region h2 {}
+#content-region h3 {}
+#content-region h4 {}
+
+#content-footer {
+
+}
+
+#feed-icons {
+
+}
+
+/**
+ * Footer regions
+ **/
+#ft {
+}
+
+#footer-region {
+
+}
+
+#footer-links-region {
+
+}
+#footer-links-region a {}
+#footer-links-region a:link {}
+#footer-links-region a:visited {}
+#footer-links-region a:hover {}
+#footer-links-region a:active {}
+
+/*
+** Tab navigation
+*/
+ul.tabs {
+    border-bottom: 1px solid black;
+}
+
+
+ul.secondary {
+  padding: 0 0 0 1em;
+  margin: 5px;
+  margin-top: 10px;
+}
+
+ul.secondary li {
+  margin-bottom: 0px;
+  border-right: none;
+}
+
+ul.secondary li a {
+  background-color: #ddd;
+  border-color: #bbb;
+  border-width: 1px;
+  border-style: solid solid none solid;
+  height: auto;
+  margin-right: 0.5em; /* LTR */
+  padding: 0 1em;
+  text-decoration: none;
+}
+
+ul.secondary li.active a:link,
+ul.secondary li.active a:visited,
+ul.secondary li.active a:hover,
+ul.secondary li.active a:active,
+ul.primary li.active a:link,
+ul.primary li.active a:visited,
+ul.primary li.active a:hover,
+ul.primary li.active a:active
+ {
+    color: black;
+    border-top :  1px solid black;
+    border-left :  1px solid black;
+    border-right : 1px solid black;
+    border-bottom: 1px solid white;
+    background-color: white;
+    margin-bottom: 0px;
+    /*border-bottom: 1px solid white;*/
+}
+ul.secondary li a:link,
+ul.secondary li a:visited,
+ul.secondary li a:hover,
+ul.secondary li a:active,
+ul.primary li a:link,
+ul.primary li a:visited,
+ul.primary li a:hover,
+ul.primary li a:active
+{
+    color: #00789F;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right : 1px solid gray;
+    margin-bottom: 0px;
+}
+
+ul.secondary li a:hover {
+
+  background-color: #eee;
+
+}
+
+/*
+ ** Vertical Block Navigation
+ */
+#navigation h2 {
+    /*
+    padding-left: 5px;
+    color: white;
+    background-color: #006184;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 110%;
+    */
+}
+
+#navigation .block {
+    /*
+    margin-top: 4px;
+    border: solid 1px #006184;
+    padding: 0px;
+    margin-left: 0px;
+    background-color: #EFF7F8;
+    */
+
+}
+
+
+#ul.menu {
+/*    list-style: none; */
+}
+
+/**
+ * Login Block
+ **/
+
+#user-login-form label {
+    /*
+    text-align: left;
+    padding-left: 5px;
+    */
+
+}
+
+#user-login-form ul {
+    padding-top: 5px;
+
+}
+
+
+
+/**
+ * Comments
+ **/
+.comment,
+.comment-new {
+/*    padding-top: 0px;
+    padding-left: 4px;
+    border: dotted 1px blue;
+    margin-bottom: 2px;
+    margin-right:6px;
+*/
+}
+
+.commentSubmitted {
+/*    margin-bottom: 3px; */
+}
+
+
+div.comment h3 {
+/*   margin-top: 2px;
+   margin-bottom: 4px;
+*/
+}
+
+
+/*
+ * Node styles
+ */
+
+h1.pageTitle {
+    /*
+    color: #920305 !important;
+    margin-bottom: 5px;
+    font-size: 180%;
+    font-family: Palatino Linotype, Book Antiqua, Palatino, serif !important;
+    */
+}
+
+.pageNode {
+/*    margin-right: 10px;
+    border-bottom: 1px dotted #006184;
+    padding-bottom: 8px;
+*/
+
+}
+
+.pageNode ul li {
+/*    margin-bottom: 3px;
+    list-style: circle;
+*/
+}
+
+.pageNode .rightImg {
+    /*
+    float: right;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 0px;
+    */
+}
+
+
+.storyNode {
+    /*
+    border-bottom: 1px dotted #006184;
+    margin-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 8px;
+    */
+}
+.storyNode h1 {
+    /*
+    margin-top: 2px;
+    padding-top: 0px;
+    */
+}
+
+/**
+ * Page content styles
+ **/
+
+dl.node-type-list dt a,
+dl.node-type-list dt a:visited,
+ul.pageMenu a,
+ul.pageMenu a:visited
+{
+    color: #006184;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+dl.node-type-list dt a:hover,
+ul.pageMenu a:hover
+{
+    background-color: #006184;
+    color: white;
+}
+
+ul.pageMenu li {
+        list-style-type: none;
+        list-style-position: outside;
+        padding-bottom: 6px;
+}
+
+dl.node-type-list dd,
+ul.pageMenu p {
+    margin-left: 10px;
+    font-style: italic;;
+    margin-bottom: 6px;
+}
+
+
+div.links,
+ul.links {
+/*    padding-top: 3px;
+    padding-bottom: 5px;
+    */
+}
+
+
+div.meta {
+    /*
+    padding-top: 3px;
+    padding-bottom: 3px;
+    */
+}
+
+
+/**
+ * Horizontal Menus
+ **/
+
+
+ div.hmenu {
+/*     border: 1px solid blue; */
+     padding-top: 2px;
+     padding-bottom: 2px;
+ }
+
+
+
+ div.hmenu ul.menu {
+/*     list-style: none;
+     list-style-image: none;
+*/
+     margin-left: 0;
+     padding-left: 2px;
+     padding-right: 2px;
+ }
+
+ div.hmenu ul.menu li {
+     display: inline;
+     margin-left: 0;
+     /*border: 1px solid red;*/
+ }
+
+ #footer-links-region ul.menu {
+        margin-left: 0;
+        text-align: center;
+
+ }
+
+
+
+
+/**
+ * Node content styles
+ * See quip
+ **/

@@ -1,0 +1,7 @@
+/***************************************************
+ * Styles that are used for non-visual and limited capability
+ * devices ONLY. Media types: aural, braille, TTY
+ ***************************************************/
+.doNotSpeak {
+	display: none !important;
+}

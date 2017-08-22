@@ -1,0 +1,933 @@
+/* $Id: style.css,v 1.0 2008/09/11 09:27:26 goba Exp $ */
+/* Site specific base styles */
+
+/**
+ * TOPS, for Drupal 6.x
+ * Terry SoRelle, iStyledThis [dot] nl
+ */
+
+
+ /*
+ * Top level elements and styles
+ */
+html {
+    /*
+    background: #ECE9D8 !important;
+    */
+}
+
+
+body {
+    /*
+    background-color: #ECE9D8;
+    padding-top: 15px;
+    padding-bottom: 18px;
+    */
+}
+
+/* YUI Header div */
+#hd {
+    /*
+    border-top: solid 1px;
+    border-color: #002200;
+    border-bottom: solid 1px;
+    margin-bottom: 0px;
+    */
+}
+
+/* YUI main content div */
+#bd {
+/*
+  border-color: #002200;
+  border-width: 0px;
+  padding-bottom:2ex;
+  */
+}
+
+#bd p {
+    /*
+    padding-right: 2em;
+    */
+}
+
+/*
+ * Node styles
+ */
+h1.pageTitle {
+    /*
+    color: #920305 !important;
+    margin-bottom: 5px;
+    font-size: 180%;
+    font-family: Palatino Linotype, Book Antiqua, Palatino, serif !important;
+    */
+}
+
+
+
+/*
+** Tab navigation
+*/
+ul.tabs {
+    border-bottom: 1px solid black;
+}
+
+
+ul.secondary {
+  padding: 0 0 0 1em;
+  margin: 5px;
+  margin-top: 10px;
+}
+
+ul.secondary li {
+  margin-bottom: 0px;
+  border-right: none;
+}
+
+ul.secondary li a {
+  background-color: #ddd;
+  border-color: #bbb;
+  border-width: 1px;
+  border-style: solid solid none solid;
+  height: auto;
+  margin-right: 0.5em; /* LTR */
+  padding: 0 1em;
+  text-decoration: none;
+}
+
+ul.secondary li.active a:link,
+ul.secondary li.active a:visited,
+ul.secondary li.active a:hover,
+ul.secondary li.active a:active,
+ul.primary li.active a:link,
+ul.primary li.active a:visited,
+ul.primary li.active a:hover,
+ul.primary li.active a:active
+ {
+    color: black;
+    border-top :  1px solid black;
+    border-left :  1px solid black;
+    border-right : 1px solid black;
+    border-bottom: 1px solid white;
+    background-color: white;
+    margin-bottom: 0px;
+    /*border-bottom: 1px solid white;*/
+}
+ul.secondary li a:link,
+ul.secondary li a:visited,
+ul.secondary li a:hover,
+ul.secondary li a:active,
+ul.primary li a:link,
+ul.primary li a:visited,
+ul.primary li a:hover,
+ul.primary li a:active
+{
+    color: #00789F;
+    border-top,
+    border-left,
+    border-right : 1px solid gray;
+    margin-bottom: 0px;
+}
+
+ul.secondary li a:hover {
+  background-color: #eee;
+}
+
+/*
+ ** Navigation block
+ */
+#navigation h2 {
+    /*
+    padding-left: 5px;
+    color: white;
+    background-color: #006184;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 110%;
+    */
+}
+
+#navigation .block {
+    /*
+    margin-top: 4px;
+    border: solid 1px #006184;
+    padding: 0px;
+    margin-left: 0px;
+    background-color: #EFF7F8;
+    */
+
+}
+
+#navigation ul {
+    /*
+    margin-left: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    */
+}
+
+#navigation li {
+    /*
+    color: #003046;
+    list-style-image: none;
+    list-style-type: none;
+    list-style-position: outside;
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    padding-right: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    */
+
+}
+
+#navigation li ul {
+    /*
+  background-color: #EFF7F8;
+    */
+
+}
+
+
+#navigation li ul li,
+#navigation li ul li a {
+    /*
+    background-color: #EFF7F8;
+    */
+
+}
+
+#navigation li a {
+    /*
+    padding-left: 2px;
+    margin-left: 0px;
+    display: block;
+    text-decoration: none;
+    color: #003046;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 2px solid gray;
+    border-right: 2px solid gray;
+    */
+
+}
+
+#navigation li a.active,
+#navigation li a.active:hover
+ {
+/*
+    color:  #006184;
+    background-color:  white;
+    border-top: 2px solid gray;
+    border-left: 2px solid gray;
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+    font-weight: bold;
+    */
+}
+
+
+
+#navigation li a:hover {
+    /*
+    text-decoration: none;
+    color:  white;
+    background-color:  #006184;
+    */
+}
+
+#navigation li ul {
+}
+
+
+#navigation li ul li {
+    /*
+    color: gray;
+    font-weight: normal;
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-left: 1px;
+    padding-bottom: 1px;
+    margin-bottom: 1px;
+    */
+}
+
+#navigation li ul li a {
+    /*
+    border: 0;
+    color: #003853;
+    */
+}
+
+
+
+#navigation li.leaf .last {
+    /*
+    margin-bottom: 0px;
+    */
+}
+
+
+#navigation .menu {
+    /*
+    margin-top: 0px;
+    list-style: none !important;
+    */
+}
+
+#headerBottom {
+    font-size: 80%;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    background-color:#006184;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 2px;
+}
+
+#headerBottom h2 {
+    margin-top: 0px;
+    text-align: center;
+    margin-bottom: 0px;
+    padding-bottom: 1px;
+    font-size: 130%;
+
+}
+
+#headerBottom h3 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 1px;
+    font-size: 120%;
+}
+
+#primaryLinks {
+    padding-top: 3px;
+    text-align: right;
+}
+
+
+#headerTitle {
+    margin-left: 10px;
+}
+
+
+#headerTitle h1 {
+    margin-top: 10px;
+    margin-bottom: 2px;
+    font-size: 200%;
+}
+
+#headerTitle h2 {
+    font-style: italic;
+    font-size: 150%;
+    margin-top:2px;
+    margin-bottom: 4px;
+}
+
+/*#searchForm {*/
+#headerTop {
+    float: right;
+    padding: 3px;
+}
+
+#headerMain {
+    padding-top: 3px;
+}
+
+#userInfo {
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 3px;
+    color: #006184;
+}
+
+
+/*
+#mainContent h2,
+#mainContent h2 a,
+#mainContent h2 a: link,
+#mainContent h2 a: visited
+*/
+#mainContent {
+    padding-left: 6px;
+}
+
+
+#mainContent h2 a
+{
+    color: #006184;
+}
+
+
+
+#menuColumn {
+}
+
+#menuColumn p {
+      padding-left: 5px;
+      padding-right: 3px;
+}
+
+#navigation h2 {
+    padding-left: 5px;
+    color: white;
+    background-color: #006184;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 110%;
+
+}
+
+#ul.menu {
+    list-style: none;
+}
+
+#user-login-form label {
+    text-align: left;
+    padding-left: 5px;
+
+}
+
+#user-login-form ul {
+    padding-top: 5px;
+
+}
+
+
+/* menu styling example */
+#sideMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+  margin-left: 2px;
+}
+* html #sideMenu ul
+{
+  margin-top: 3px;
+}
+#sideMenu li {
+    list-style: none;
+    font-size: 93%;
+    font-family: Comic Sans MS, Comic Sans MS5, cursive;
+    border: #336633 solid 1px;
+    border-right: #336633 solid 2px;
+    border-bottom: #336633 solid 2px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+/* Fixes for IE 6 */
+* html #sideMenu li
+{
+    height: 1em;
+    margin-bottom: 0px;
+    margin-top: 0;
+}
+
+
+#ft p {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+
+#ft {
+    background-color:#006184;
+    color: white;
+    padding:3px;
+    text-align: center;
+    border-color: #002200;
+    border-top: solid 1px;
+    border-bottom: solid 2px;
+}
+#ft a,
+#ft a:visited
+ {
+    background-color:#006184;
+    color: white;
+}
+
+
+/* Use this to hide text that should only be displayed in non compliant browsers. */
+.doNotDisplay {
+	display: none !important;
+}
+
+
+div#logo {
+    float:right;
+    padding-right: 5px;
+    padding-top: 5px;
+
+}
+
+
+div#logo img {
+    border: 1px solid black;
+}
+
+
+
+
+
+
+/**
+* Layout
+**/
+#yui-main {
+
+}
+
+
+.yui-b {
+
+
+}
+
+.yui-g {
+
+}
+
+
+.reviewBody {
+/*   margin-left:95px;*/
+    padding-left:5px;
+/*    border-left: 1px solid black; */
+}
+
+.bookImage {
+   float: left;
+   clear: right;
+   margin-right: 10px;
+   margin-top: 5px;
+}
+
+.date_box {
+	background-color: #FFFFFF;
+	background-image: url(images/date.jpg);
+	height: 51px;
+	width: 52px;
+	float: left;
+}
+
+.date_box_month {
+	padding-top: 6px;
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-left: 3px;
+	text-align: center;
+	color: #75a006;
+}
+
+.date_box_day {
+	font-size: 22px;
+	font-weight: bold;
+	padding-left: 3px;
+	text-align: center;
+	font-style: italic;
+	color: #654040;
+}
+
+.submitted {
+/*    display: block; */
+    margin-bottom: 3px;
+    color: #747474;
+    font-style: italic;
+    clear: right;
+}
+
+#tapestry {
+    margin-left: 100px;
+}
+
+#tapestry img {
+    border: 1px solid black;
+}
+
+#mainContent h1,
+#mainContent h2,
+#mainContent h3
+{
+    color: #006184;
+}
+
+
+h3.firstHeader {
+    margin-top: 1px;
+    padding-top: 1px;
+}
+
+
+.pageNode {
+/*    border-top: 1px solid #006184; */
+/*    margin-right: 10px; */
+    margin-right: 10px;
+    border-bottom: 1px dotted #006184;
+    padding-bottom: 8px;
+
+}
+
+.pageNode ul li {
+    margin-bottom: 3px;
+    list-style: circle;
+}
+
+.pageNode .rightImg {
+    float: right;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 0px;
+}
+
+
+.storyNode {
+    border-bottom: 1px dotted #006184;
+    margin-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 8px;
+}
+.storyNode h1 {
+    margin-top: 2px;
+    padding-top: 0px;
+}
+
+.comment,
+.comment-new {
+    padding-top: 0px;
+    padding-left: 4px;
+    border: dotted 1px blue;
+    margin-bottom: 2px;
+    margin-right:6px;
+}
+
+.commentSubmitted {
+    margin-bottom: 3px;
+}
+
+
+div.comment h3 {
+   margin-top: 2px;
+   margin-bottom: 4px;
+}
+
+
+
+
+
+div.status {
+  background-color: #DAE9EC;
+  color: ##174D17;
+  border: 1px dotted green;
+  margin-right: 10px;
+  padding: 3px;
+  margin-bottom: 0;
+  margin-top: 3px;
+}
+
+
+.messages ul {
+  margin: 0;
+  list-style: none;
+}
+
+.messages ul li {
+  list-style: none;
+}
+
+
+div.error, tr.error {
+  color: #a30000;
+  background-color: #FFCCCC;
+  border: 1px dotted red;
+  margin-right: 10px;
+  padding: 3px;
+  margin-bottom: 0;
+  margin-top: 3px;
+}
+
+div.forumText {
+}
+
+div#mainContent{
+    margin-top: 0px;
+    margin-left: 0px;
+    padding: 0;
+}
+
+
+div#mainContent h1,h2 {
+    margin-top: 3px;
+}
+
+div.breadcrumb a,
+div.breadcrumb a:visited {
+   /*    color:  #006184 !important; */
+    color: #920305;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+div.breadcrumb a:hover {
+    text-decoration: underline !important;
+}
+
+div.breadcrumb {
+    margin-top: 3px;
+    margin-bottom: 2px !important;
+    padding: 0 !important;
+    margin-right: 10px;
+    text-align: right;
+}
+
+dl.node-type-list dt a,
+dl.node-type-list dt a:visited,
+ul.pageMenu a,
+ul.pageMenu a:visited
+{
+    color: #006184;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+dl.node-type-list dt a:hover,
+ul.pageMenu a:hover
+{
+    background-color: #006184;
+    color: white;
+}
+
+ul.pageMenu li {
+        list-style-type: none;
+        list-style-position: outside;
+        padding-bottom: 6px;
+}
+
+dl.node-type-list dd,
+ul.pageMenu p {
+margin-left: 10px;
+    font-style: italic;;
+    margin-bottom: 6px;
+}
+
+div.forumBody {
+
+
+}
+
+div.forumText {
+
+}
+
+div.forum-topic-navigation {
+
+}
+div.comment h3 a,
+div.comment h3 a:visited {
+    color: #006184;
+}
+
+
+li.forum a,
+li.comment_delete a,
+li.comment_edit a,
+li.comment_reply a,
+li.comment_add a,
+li.comment_add a:visited {
+    color: #002D3C;
+    padding: 2xp;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+    background-color: #F5F5F5;
+/*    background-color: #D0D0D0; */
+    margin-top: 12px;
+    border-top: 1px solid black !important;
+    border-left: 1px solid black !important;
+    border-bottom: 2px solid black !important;
+    border-right: 2px solid black !important;
+    margin-bottom: 5px;
+}
+
+
+
+li.forum a:hover,
+li.comment_delete a:hover,
+li.comment_add a:hover,
+li.comment_edit a:hover,
+li.comment_reply a:hover {
+/*    background-color: #EFEFEF; */
+    background-color: #D0D0D0;
+    border-top: 2px solid black !important;
+    border-left: 2px solid black !important;
+    border-bottom: 1px solid black !important;
+    border-right: 1px solid black !important;
+
+}
+
+td.last-reply a,
+td.last-reply a:visited,
+div.name a,
+div.name a:visited,
+div.forum-topic-navigation a,
+div.forum-topic-navigation a:visited,
+div.meta a,
+div.meta a:visited {
+    color: #002D3C;
+}
+
+div.forum-topic-navigation a,
+div.forum-topic-navigation a:visited
+{
+        color: #002D3C;
+        text-decoration: none;
+}
+
+td a,
+td a:visited
+{
+        color: #002D3C;
+}
+
+
+div.links,
+ul.links {
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+
+div.meta {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+th,
+th a,
+th a.visited {
+    background-color:#006184;
+    color: white;
+    vertical-align: top;
+
+}
+
+
+td {
+    background-color: white;
+    vertical-align: top;
+}
+
+table {
+    margin-top: 10px;
+    margin-left: 3px;
+	 width: 96%;
+}
+
+div#trace {
+    margin-top: 0;
+    margin-bottom: 5px;
+    background-color: white;
+    color: black;
+    text-align: left;;
+    padding: 5px;
+}
+
+div#bookstores strong {
+    font-size: 110%;
+    color: #004159;
+}
+
+div#bookstores a {
+    font-size: 110%;
+    font-weight: bold;
+/*    color: #006184;*/
+    color: #004159;
+
+}
+
+div#bookstores li {
+    list-style: circle;
+    margin-bottom: 10px;
+}
+
+div#entityTeaser p {
+    margin-top: = 1px;
+}
+
+.authorTeaser {
+    margin-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+}
+.authorTeaser h2 {
+    margin-bottom: 2px;
+}
+
+.authorTeaser p {
+    margin-top: 1px;
+}
+
+div.readMore a {
+        color: #006184;
+    font-style: italic;
+}
+
+img.userPicture {
+   border: 1px solid black;
+   border-right-width: 2px;
+   border-bottom-width: 2px;
+
+}
+
+
+div.reviewComment img {
+    margin: 5px;
+    margin-right: 10px;
+    float: right;
+}
+
+div.forum-topic-navigation {
+    clear: left;
+    clear: right;
+}
+
+div.forumBody img {
+    float: right;
+    clear: right;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 3px;
+}
+
+
+img.entityPicture {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right : 2px solid black;
+    border-bottom: 3px solid black;
+}
+
+img.entityPicture-right {
+    margin-left: 10px;
+}
+
+img.entityPicture-left {
+    margin-right: 10px;
+}
+
+input.error {
+    color: black;
+}
+
+h1.listHeader {
+   font-size: 180%;
+   margin-bottom: 10px;
+}
+

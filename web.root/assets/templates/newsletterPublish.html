@@ -1,0 +1,60 @@
+<div id="newsletter-publish-component">
+    <div class="row">
+        <form class="col-md-12">
+            <div class="row">
+                <div class="col-md-4 form-group"> <!-- data-bind="css:{'has-error': termOfServiceForm.dateError}"> -->
+                    <div class="radio">
+                        <label><input type="radio" name="fileuploaded" value="upload" data-bind="checked:fileStatus, click:clearForm">Upload a file</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="fileuploaded" value="uploaded" data-bind="checked:fileStatus, click:clearForm">Use previously uploaded file</label>
+                    </div>
+                </div>
+
+                <div class="col-md-8 form-group" data-bind="visible:fileStatus() == 'upload'"  style="padding-top: 12px"> <!-- data-bind="css:{'has-error': termOfServiceForm.dateError}"> -->
+                    <input type="file" id='fileselect' name="files[]" accept="application/pdf"
+                           data-bind="event: {change: onFileSelected }"  />
+                </div>
+            </div>
+            <div class="row" data-bind="visible:acceptDate">
+                <div class="col-md-4 form-group" > <!-- data-bind="css:{'has-error': termOfServiceForm.dateError}"> -->
+                    <label for="publicaton-date" class="control-label" >
+                        Publication date:  <!-- span data-bind="text:termOfServiceForm.dateError"></span -->
+                    </label>
+                    <input class="form-control datepicker" id="publicaton-date" data-bind="value:publicationDate">
+                </div>
+                <div class="col-md-8" style="padding-top: 24px" data-bind="visible: publicationDate() != ''">
+                    <button class="btn btn-small btn-primary" data-bind="click:getMessageText">Get message text</button>
+                </div>
+            </div>
+            <div class="row" data-bind="visible:messageText()">
+                <div class="col-md-8 form-group" >
+                    <label for="message-text" class="control-label">Message text:</label>
+                    <textarea rows="10" class="form-control" id="message-text" data-bind="value:messageText"></textarea>
+                </div>
+            </div>
+
+            <div class="row" data-bind="visible:messageText()">
+                <div class="col-md-2">
+                    <button class="btn btn-primary" data-bind="click:sendMessage">Send message</button>
+                </div>
+                <div class="col-md-10 checkbox">
+                    <label >
+                        <input type="checkbox" data-bind="checked: testMode">Send test message only
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr>
+            <a style="font-size: smaller" href="/fma/download/newsletter">[ <span style="font-style: italic">Download mailing labels</span> </a>]
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a style="font-size: smaller" href="/mailer">[ <span style="font-style: italic">Return to e-mailings page</span> </a>]
+        </div>
+    </div>
+</div>
