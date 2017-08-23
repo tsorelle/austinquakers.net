@@ -31,7 +31,6 @@ class TShowMap extends TPageAction
         // TTracer::ShowArray($mapProvider);
         // $this->pageController->addScriptReference($mapProvider->scriptUrl);
        // $this->pageController->addScriptReference('/fma/js/mxn/mxn.js?('.$mapProvider->mxn.')' );
-
         $this->pageController->addScriptReference('/fma/js/addressmap.js');
 
         $legendDiv = TFieldSet::Create('map-legend','Legend');
@@ -57,6 +56,7 @@ class TShowMap extends TPageAction
             ,'inline');
 
         drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyA1uWoXmHoL53T5__jvvChMYhSSbAe0TIk&callback=create_map', 'inline', 'footer', FALSE, TRUE, FALSE);
+
     }
 }
 // TViewPerson
