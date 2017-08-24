@@ -3,8 +3,8 @@
 /* Use this startup file when not invoking from Drupal
 ******/
 // bootstrap Drupal
-chdir($_SERVER['DOCUMENT_ROOT']); // change this to drupal location if not at root.
-require_once './includes/bootstrap.inc';
+chdir(__DIR__.'/..' ); //$_SERVER['DOCUMENT_ROOT']); // change this to drupal location if not at root.
+require_once __DIR__.'/../includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 
 // continue startup - similar to tops_init()

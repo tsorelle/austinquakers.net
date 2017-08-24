@@ -134,6 +134,8 @@
 
         <?php print $closure; ?>
     </div> <!-- end page frame "docId" -->
+
 </body>
+<?php TFooterScripts::Render(); ?>
 <?php TViewModel::RenderStartScript(); ?>
 </html>

@@ -37,14 +37,12 @@ view.php
 xmlrpc.php
 cgi-bin/*
 files/*
-fma/*
 sites/*/settings*.php
 sites/*/files
 includes/*
 misc/*
 modules/*
 profiles/*
-scripts/*
 !runscript.php
 !fdsnotifications.php
 !sendfmareminders.php
@@ -69,5 +67,4 @@ sites/all/modules/search_files
 sites/all/modules/views_bulk_operations
 sites/all/themes/basic
 tmp
-*.js
-*.js.map
+/fma/js/mxn/

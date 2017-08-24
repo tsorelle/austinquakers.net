@@ -20,23 +20,28 @@ class TGoogleMapsApi extends TMappingApi
             $address .= $address2;
         }
 
-        $url = $address;
+        $addressParams = $address;
         if ($city)
-            $url .= ",+$city";
+            $addressParams .= ",+$city";
         if ($province)
-            $url .=  ",+$province";
+            $addressParams .=  ",+$province";
         if ($postalCode)
-            $url .= "+$postalCode";
+            $addressParams .= "+$postalCode";
 
-        $url = str_replace('#',' ',$url);
-        $url = str_replace('?',' ',$url);
-        $url = str_replace('&',' ',$url);
-        $url = str_replace(" ","+",$url);
+        $addressParams = str_replace('#',' ',$addressParams);
+        $addressParams = str_replace('?',' ',$addressParams);
+        $addressParams = str_replace('&',' ',$addressParams);
+        $addressParams = str_replace(" ","+",$addressParams);
 
-        $url = "https://maps.googleapis.com/maps/api/geocode/xml?address=$url&sensor=false&key=".$this->serviceCode;
-        TTracer::Trace('<a href="'.$url.'">Service Request</a>');
+        $settings =  TConfiguration::GetSectionSettings('maps');
 
-        return $url;
+        // geocodeurl.Google='https://maps.googleapis.com/maps/api/geocode/xml?address=[[address]]&sensor=false&key=[[key]]'
+        $apiKey = $settings['providerkey.Google'];
+        $mappingUrl = $settings['geocodeurl.Google'];
+        $mappingUrl = str_replace('[[key]]',$apiKey,
+            str_replace('[[address]]',$addressParams,$mappingUrl));
+
+        return $mappingUrl;
     }
 
     public function QueryGoogleLocation($url) {

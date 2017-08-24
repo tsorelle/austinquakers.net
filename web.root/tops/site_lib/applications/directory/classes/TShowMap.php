@@ -3,9 +3,15 @@ class TShowMap extends TPageAction
 {
     //providerurl.Google=http://maps.google.com/maps/api/js?sensor=false
 
-    protected function run() {
+    protected function run($debug=false) {
 
         TTracer::Trace('TShowMap::Run');
+        $settings =  TConfiguration::GetSectionSettings('maps');
+
+        $apiKey = $settings['providerkey.Google'];
+        $mappingUrl = $settings['scripturl.Google'];
+        $mappingUrl = str_replace('[[key]]',$apiKey,
+            str_replace('[[callback]]','create_map',$mappingUrl));
         $aid = TRequest::GetValue('aid',0);
         $fmaLatitude = 30.2836450;
         $fmaLongitude = -97.6948260;
@@ -20,6 +26,8 @@ class TShowMap extends TPageAction
             $startLon = $address->lon;
             $addressName = $address->name;
             $address = json_encode($address);
+            // print $address;
+            // exit;
         }
         else {
             $startLat = $fmaLatitude;
@@ -27,10 +35,6 @@ class TShowMap extends TPageAction
             $address = 'null';
         }
 
-        $mapProvider = TMappingApi::GetCurrentProvider();
-        // TTracer::ShowArray($mapProvider);
-        // $this->pageController->addScriptReference($mapProvider->scriptUrl);
-       // $this->pageController->addScriptReference('/fma/js/mxn/mxn.js?('.$mapProvider->mxn.')' );
         $this->pageController->addScriptReference('/fma/js/addressmap.js');
 
         $legendDiv = TFieldSet::Create('map-legend','Legend');
@@ -44,7 +48,9 @@ class TShowMap extends TPageAction
         $this->pageController->addMainContent($mapDiv);
         $this->pageController->addMainContent(TDiv::Create('info'));
 
-
+        //$googleApiSrc = $mapProvider->
+        // $googleApiSrc = "https://maps.googleapis.com/maps/api/js?key=AIzaSyA1uWoXmHoL53T5__jvvChMYhSSbAe0TIk&callback=create_map";
+        // $googleApiSrc = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDCeh7vS8ZsJDFzmE4BJ7Z6BPGjniSC098&callback=create_map";
 
         drupal_add_js(
             "var startLat = $startLat;\n".
@@ -55,7 +61,8 @@ class TShowMap extends TPageAction
 
             ,'inline');
 
-        drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyA1uWoXmHoL53T5__jvvChMYhSSbAe0TIk&callback=create_map', 'inline', 'footer', FALSE, TRUE, FALSE);
+        // TFooterScripts::Add($googleApiSrc);
+        TFooterScripts::Add($mappingUrl);
 
     }
 }

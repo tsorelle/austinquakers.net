@@ -21,9 +21,11 @@ class TClassLib
             return; // redundant call
 
         if (!isset($topsLib))
-            $topsLib = $_SERVER['DOCUMENT_ROOT'].'/tops/tops_lib';
+            //$topsLib = $_SERVER['DOCUMENT_ROOT'].'/tops/tops_lib';
+            $topsLib = __DIR__.'/..';
         if (!isset($siteLib))
             $siteLib = $_SERVER['DOCUMENT_ROOT'].'/tops/site_lib';
+            $siteLib = "$topsLib/../site_lib";
 
         $topsLib = realpath($topsLib);
         if ($topsLib === FALSE)
