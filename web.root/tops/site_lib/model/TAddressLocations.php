@@ -55,6 +55,7 @@ class TAddressLocations
     public function getMapAddress($addressId)
     {
         $sql = 'SELECT id,name,addr,lat,lon FROM addresspoints WHERE id = ? ';
+
         return $this->db->Find($sql, $addressId);
     }
 
@@ -134,9 +135,9 @@ class TAddressLocations
     public function getLocationsInBox($swLat, $swLong, $neLat, $neLong)
     {
         $sql =
-            'SELECT id,name,addr,lat,lon FROM addresspoints ' .
-            "WHERE (lat BETWEEN ? AND  ?) AND (lon BETWEEN ? AND ?) " .
-            'ORDER BY lat,lon';
+           'SELECT id,name,addr,lat,lon FROM addresspoints ' .
+           "WHERE (lat BETWEEN ? AND  ?) AND (lon BETWEEN ? AND ?) " .
+           'ORDER BY lat,lon';
 
         $addresses = $this->db->Select($sql, $swLat, $neLat, $swLong, $neLong);
         // TTracer::ShowArray($addresses);
